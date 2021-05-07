@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context=".GifsActivity">
+    tools:context=".ui.login.GifsActivity">
 
     <Button
         android:id="@+id/btnBuscarGif"
@@ -22,5 +22,11 @@
         tools:srcCompat="@tools:sample/avatars"
         android:contentDescription="pruebas"
         />
+
+    <TextView
+        android:id="@+id/tvResultado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
 
 </LinearLayout>

@@ -12,7 +12,7 @@
         android:theme="@style/Theme.GifAplication"
         android:usesCleartextTraffic="true"
         >
-        <activity android:name=".GifsActivity">
+        <activity android:name=".ui.login.GifsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
