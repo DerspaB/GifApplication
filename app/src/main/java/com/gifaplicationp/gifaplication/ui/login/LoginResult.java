@@ -9,10 +9,18 @@ class LoginResult {
     @Nullable
     private LoggedInUserView success;
     @Nullable
-    private Integer error;
+    private Integer exeptionError;
+    @Nullable
+    private String error;
 
-    LoginResult(@Nullable Integer error) {
+    LoginResult(@Nullable Integer exeptionError) {
+        this.exeptionError = exeptionError;
+        this.error = null;
+    }
+
+    LoginResult(@Nullable String error) {
         this.error = error;
+        this.exeptionError = null;
     }
 
     LoginResult(@Nullable LoggedInUserView success) {
@@ -26,6 +34,6 @@ class LoginResult {
 
     @Nullable
     Integer getError() {
-        return error;
+        return exeptionError;
     }
 }
