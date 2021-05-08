@@ -7,13 +7,14 @@
     android:layout_height="match_parent"
     tools:context=".ui.login.GifsActivity">
 
-    <Button
-        android:id="@+id/btnBuscarGif"
+
+    <EditText
+        android:id="@+id/etBusqueda"
+        android:textAlignment="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="findGif"
-        android:text="@string/btnBuscarGif"
-        android:textSize="20sp" />
+        android:layout_margin="20sp"
+        android:hint="@string/etBusqueda" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -21,12 +22,16 @@
         android:layout_height="wrap_content"
         tools:srcCompat="@tools:sample/avatars"
         android:contentDescription="pruebas"
+        android:layout_margin="20sp"
         />
 
-    <TextView
-        android:id="@+id/tvResultado"
+    <Button
+        android:id="@+id/btnBuscarGif"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:onClick="findGif"
+        android:text="@string/btnBuscarGif"
+        android:layout_margin="20sp"
+        android:textSize="20sp" />
 
 </LinearLayout>

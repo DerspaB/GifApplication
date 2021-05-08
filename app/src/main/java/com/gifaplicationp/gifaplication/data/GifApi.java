@@ -15,6 +15,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -33,12 +34,13 @@ import retrofit2.http.PATCH;
 import retrofit2.http.Path;
 
 public class GifApi {
-    private String urlRequest = "https://api.giphy.com/v1/gifs/random?api_key=PBB08fVPiIErnJe1zPPEZG4t84lOlk3V&tag=Attack of titans";
-    private String parametro = "";
-    private static  final String apiKey = "PBB08fVPiIErnJe1zPPEZG4t84lOlk3V";
+    private String urlRequest = "https://api.giphy.com/v1/gifs/random?api_key=PBB08fVPiIErnJe1zPPEZG4t84lOlk3V&tag=";
+    private String parametro;
     private JSONObject respuesta;
-    private final Gson gson = new Gson();
 
+    public void setParametro(String parametro) {
+        this.parametro = parametro;
+    }
 
     public GifApi() {}
 
@@ -46,21 +48,18 @@ public class GifApi {
         this.parametro = parametro;
     }
 
-    public void getRequest(Activity activity, TextView tvResultado){
+    public void getRequest(Activity activity, ImageView imageView){
         RequestQueue queue = Volley.newRequestQueue(activity);
+        urlRequest = urlRequest+this.parametro;
         JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, this.urlRequest,null,new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject  response) {
-////                respGet.setText("Data: "+response);
-////                Toast.makeText(activity, "Data: "+response, Toast.LENGTH_LONG).show();
-                    Gif gif = new Gif();
-                    gif =  gson.fromJson(response.toString(), Gif.class);
                 try {
                     JSONObject data = response.getJSONObject("data");
                     JSONObject images = data.getJSONObject("images");
                     JSONObject medium = images.getJSONObject("downsized_medium");
                     String url = medium.getString("url");
-                    tvResultado.setText(url);
+                    Glide.with(activity).load(url).into(imageView);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
