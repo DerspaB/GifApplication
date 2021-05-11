@@ -16,22 +16,9 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
-import retrofit2.Call;
-import retrofit2.http.GET;
-import retrofit2.http.PATCH;
-import retrofit2.http.Path;
 
 public class GifApi {
     private String urlRequest = "https://api.giphy.com/v1/gifs/random?api_key=PBB08fVPiIErnJe1zPPEZG4t84lOlk3V&tag=";

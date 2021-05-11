@@ -7,20 +7,13 @@ import androidx.lifecycle.ViewModel;
 import android.content.Context;
 import android.util.Patterns;
 
-import com.gifaplicationp.gifaplication.data.LoginRepository;
-import com.gifaplicationp.gifaplication.data.Result;
-import com.gifaplicationp.gifaplication.data.model.LoggedInUser;
+import com.gifaplicationp.gifaplication.data.UserService;
 import com.gifaplicationp.gifaplication.R;
 
 public class LoginViewModel extends ViewModel {
 
     private MutableLiveData<LoginFormState> loginFormState = new MutableLiveData<>();
     private MutableLiveData<LoginResult> loginResult = new MutableLiveData<>();
-    private LoginRepository loginRepository;
-
-    LoginViewModel(LoginRepository loginRepository) {
-        this.loginRepository = loginRepository;
-    }
 
     LiveData<LoginFormState> getLoginFormState() {
         return loginFormState;
@@ -32,14 +25,8 @@ public class LoginViewModel extends ViewModel {
 
     public void login(String username, String password, Context context) {
         // can be launched in a separate asynchronous job
-        Result<LoggedInUser> result = loginRepository.login(username, password, context);
-
-        if (result instanceof Result.Success) {
-            LoggedInUser data = ((Result.Success<LoggedInUser>) result).getData();
-            loginResult.setValue(new LoginResult(new LoggedInUserView(data.getDisplayName())));
-        } else {
-            loginResult.setValue(new LoginResult(R.string.login_failed));
-        }
+        UserService userService = new UserService(username, password, context);
+        userService.loginAuthenticate(loginResult);
     }
 
     public void loginDataChanged(String username, String password) {
@@ -52,7 +39,6 @@ public class LoginViewModel extends ViewModel {
         }
     }
 
-    // A placeholder username validation check
     private boolean isUserNameValid(String username) {
         if (username == null) {
             return false;
@@ -64,7 +50,6 @@ public class LoginViewModel extends ViewModel {
         }
     }
 
-    // A placeholder password validation check
     private boolean isPasswordValid(String password) {
         return password != null && password.trim().length() > 5;
     }

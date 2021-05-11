@@ -6,6 +6,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -26,6 +27,7 @@ import android.widget.Toast;
 import com.gifaplicationp.gifaplication.R;
 import com.gifaplicationp.gifaplication.ui.login.LoginViewModel;
 import com.gifaplicationp.gifaplication.ui.login.LoginViewModelFactory;
+import com.gifaplicationp.gifaplication.ui.register.RegisterActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -43,6 +45,7 @@ public class LoginActivity extends AppCompatActivity {
         final EditText passwordEditText = findViewById(R.id.password);
         final Button loginButton = findViewById(R.id.login);
         final ProgressBar loadingProgressBar = findViewById(R.id.loading);
+        final TextView singupLink = findViewById(R.id.singupLink);
 
         loginViewModel.getLoginFormState().observe(this, new Observer<LoginFormState>() {
             @Override
@@ -72,11 +75,10 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 if (loginResult.getSuccess() != null) {
                     updateUiWithUser(loginResult.getSuccess());
+                    setResult(Activity.RESULT_OK);
+                    //Complete and destroy login activity once successful
+                    finish();
                 }
-                setResult(Activity.RESULT_OK);
-
-                //Complete and destroy login activity once successful
-                finish();
             }
         });
 
@@ -119,11 +121,26 @@ public class LoginActivity extends AppCompatActivity {
                         passwordEditText.getText().toString(), context);
             }
         });
+
+        singupLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                linkSignupView();
+            }
+        });
+    }
+
+    private void linkSignupView() {
+        Intent signupView = new Intent(this, RegisterActivity.class);
+        startActivity(signupView);
     }
 
     private void updateUiWithUser(LoggedInUserView model) {
-        String welcome = getString(R.string.welcome) + model.getDisplayName();
         // TODO : initiate successful logged in experience
+        Intent userView = new Intent(context, GifsActivity.class);
+        userView.putExtra("username", model.getDisplayName());
+        startActivity(userView);
+        String welcome = getString(R.string.welcome) + model.getDisplayName();
         Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
     }
 

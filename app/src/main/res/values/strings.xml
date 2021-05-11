@@ -1,15 +1,20 @@
 <resources>
     <string name="app_name">GifAplication</string>
     <!-- Strings related to login -->
-    <string name="prompt_email">Email</string>
+    <string name="prompt_email">Usuario</string>
     <string name="prompt_password">Contraseña</string>
     <string name="action_sign_in">Inicar sesion</string>
+    <string name="action_sign_up">Registrarse</string>
+    <string name="link_sign_up">Registrese</string>
+    <string name="if_is_not_signed_up">Si no ha creado una cuenta</string>
     <string name="action_sign_in_short">Sign in</string>
-    <string name="welcome">"Welcome !"</string>
-    <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be >5 characters</string>
-    <string name="login_failed">"Login failed"</string>
-    <string name="btnBuscarGif">Buscar Gif</string>
-    <string name="etBusqueda">Introduzca una categoria</string>
-
+    <string name="welcome">"Bienvenido! "</string>
+    <string name="thanks">"Gracias por registrarte! "</string>
+    <string name="invalid_username">Usuario incorrecto</string>
+    <string name="invalid_password">La contraseña debe contener mas de 5 carateres</string>
+    <string name="login_failed">"Usuario y/o contraseña incorrectos"</string>
+    <string name="signup_failed">"No te hemos podido registrar"</string>
+    <string name="btnBuscarGif">Buscar gif</string>
+    <string name="etBusqueda">Introduce una categoria</string>
+    <string name="user_view">Hola, </string>
 </resources>

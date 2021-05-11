@@ -7,6 +7,14 @@
     android:layout_height="match_parent"
     tools:context=".ui.login.GifsActivity">
 
+    <TextView
+        android:id="@+id/tvUserWelcome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10sp"
+        android:textAlignment="center"
+        android:textSize="28sp"/>
+
 
     <EditText
         android:id="@+id/etBusqueda"
